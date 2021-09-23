@@ -20,14 +20,14 @@ fun main() {
         "https://dodopizza.by/minsk?roistat_visit=729770",
         DiscountType.FixAmount(5) // DONE 6
     )
-    println(discount)
+    println(discount.discountType.calculate(5)) // DONE 11
 
     //DONE 7
     val discountCopy = discount.copy(discountType = DiscountType.RangeAmount(5,10))
-    println(discountCopy)
+    println(discountCopy.discountType.calculate(5)) // DONE 11
 
     //DONE 9
     val discountCopyWithNoDiscountType = discount.copy(discountType = DiscountType.NoDiscount)
-    println(discountCopyWithNoDiscountType)
+    println(discountCopyWithNoDiscountType.discountType.calculate(5)) // DONE 11
 
 }
