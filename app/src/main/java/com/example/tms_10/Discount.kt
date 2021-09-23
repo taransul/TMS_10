@@ -1,35 +1,21 @@
 package com.example.tms_10
 
-// DONE 1
-class Discount(
-    title: String,
-    description: String,
+
+// DONE 3
+data class Discount(
+    val title: String,
+    var description: String,
     val discountAmount: Int,
     val imageUrl: String? = null,
     val siteUrl: String? = null,
+) {
+    fun getUppercaseTitle() = title.uppercase()
 
-    ) {
-    // DONE 2
-    val title: String = title
-        get() {
-            return field.uppercase()
+    fun updateDescription(description: String) {
+        this.description = if (description.length >= 100) {
+            description.substring(0, 100)
+        } else {
+            description
         }
-
-    // DONE 2
-    var description: String = description
-        set(value) {
-            field = if (value.length >= 100) {
-                value.substring(0, 100)
-            } else {
-                value
-            }
-        }
+    }
 }
-
-//class Discount {
-//    val title: String = ""
-//    val description: String = ""
-//    val discountAmount: Int = 0
-//    val imageUrl: String? = null
-//    val siteUrl: String? = null
-//}
