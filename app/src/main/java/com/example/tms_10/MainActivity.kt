@@ -18,11 +18,16 @@ fun main() {
         20,
         "https://thumb.tildacdn.com/tild3339-3961-4335-a333-613339336332/-/resize/520x/-/format/webp/-.jpeg",
         "https://dodopizza.by/minsk?roistat_visit=729770",
-        DiscountType.FixAmount // DONE 6
+        DiscountType.FixAmount(5) // DONE 6
     )
     println(discount)
 
     //DONE 7
-    val discountCopy = discount.copy(discountType = DiscountType.RangeAmount)
+    val discountCopy = discount.copy(discountType = DiscountType.RangeAmount(5,10))
     println(discountCopy)
+
+    //DONE 9
+    val discountCopyWithNoDiscountType = discount.copy(discountType = DiscountType.NoDiscount)
+    println(discountCopyWithNoDiscountType)
+
 }

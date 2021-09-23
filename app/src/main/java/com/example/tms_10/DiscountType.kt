@@ -1,14 +1,16 @@
 package com.example.tms_10
 
-// DONE 6
-enum class DiscountType {
-    FixAmount,
-    RangeAmount;
+// DONE 8
+sealed class DiscountType {
+    data class FixAmount(val value: Int): DiscountType()
+    data class RangeAmount(val startValue: Int, val endValue: Int): DiscountType()
+    object NoDiscount: DiscountType()
 
     override fun toString(): String {
         return when (this) {
-            FixAmount -> "Fix amount discount type"
-            RangeAmount -> "Range amount discount type"
+            is FixAmount -> "Fix amount: $value"
+            is RangeAmount -> "Range amount: $startValue - $endValue"
+            NoDiscount -> "No discount"
         }
     }
 }
