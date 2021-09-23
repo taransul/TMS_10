@@ -17,12 +17,12 @@ fun main() {
         "Скидка 20% по промокоду распространяется на всю продукцию, кроме соусов, комбо, доп. ингредиентов, кусочков пиццы и категории \"другие товары\". Действует при оформлении заказа в ресторане, а также на доставку и самовывоз. Заказ по акции можно оформить с 11.00 до 23.00. Скидка по промокоду не суммируется с другими акциями и специальными предложениями пиццерий «Додо Пицца». Промокод действует во всех пиццериях Додо Пицца, кроме г. Жлобин",
         20,
         "https://thumb.tildacdn.com/tild3339-3961-4335-a333-613339336332/-/resize/520x/-/format/webp/-.jpeg",
-        "https://dodopizza.by/minsk?roistat_visit=729770"
+        "https://dodopizza.by/minsk?roistat_visit=729770",
+        DiscountType.FixAmount // DONE 6
     )
     println(discount)
 
-    //DONE 5
-    val discountCopy = discount.copy()
-    println("Проверка на равенство: ${discount == discountCopy}")
-    println("Проверка на ссылку ${discount === discountCopy}")
+    //DONE 7
+    val discountCopy = discount.copy(discountType = DiscountType.RangeAmount)
+    println(discountCopy)
 }

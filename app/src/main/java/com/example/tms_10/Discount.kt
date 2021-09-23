@@ -8,6 +8,7 @@ data class Discount(
     val discountAmount: Int,
     val imageUrl: String? = null,
     val siteUrl: String? = null,
+    val discountType: DiscountType // DONE 7
 ) {
     fun getUppercaseTitle() = title.uppercase()
 
