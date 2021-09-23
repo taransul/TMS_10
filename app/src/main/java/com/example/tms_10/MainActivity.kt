@@ -20,4 +20,9 @@ fun main() {
         "https://dodopizza.by/minsk?roistat_visit=729770"
     )
     println(discount)
+
+    //DONE 5
+    val discountCopy = discount.copy()
+    println("Проверка на равенство: ${discount == discountCopy}")
+    println("Проверка на ссылку ${discount === discountCopy}")
 }
