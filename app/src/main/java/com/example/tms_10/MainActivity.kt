@@ -43,7 +43,7 @@ fun main() {
         id = 2,
         time = "25 Sep, 12:18",
         customerAddress = "Minsk, Scoriny 2",
-        customerName = null,
+        customerName = "Evgeniy",
         items = listOf(Item(2345, "Milk"), Item(2346, "Juice"))
     )
 
@@ -64,6 +64,22 @@ fun main() {
     val deliveries = listOf(bikeDelivery, carDelivery, postDelivery)
 
     // DONE 16
+    orders.forEach { order ->
+        deliveries.forEach { delivery ->
+            delivery.deliver(order)
+        }
+        println("\n")
+    }
+
+    // DONE 17
+    bikeDelivery.deliver = {
+        println("No print info regarding order delivery")
+    }
+
+    postDelivery.deliver = {
+        println("${postDelivery.post} delivered your order $it")
+    }
+
     orders.forEach { order ->
         deliveries.forEach { delivery ->
             delivery.deliver(order)

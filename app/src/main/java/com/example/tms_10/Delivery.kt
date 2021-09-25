@@ -2,7 +2,8 @@ package com.example.tms_10
 
 // DONE 13
 sealed class Delivery(
-    val deliver: (Order) -> Unit // DONE 14
+    // DONE 17
+    var deliver: (Order) -> Unit
 ) {
     data class BikeDelivery(val bike: String) : Delivery({
         println("Bike delivery of order ${it.id} using bike $bike")  // DONE 14
