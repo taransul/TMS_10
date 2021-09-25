@@ -1,7 +1,7 @@
 package com.example.tms_10
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,11 +23,67 @@ fun main() {
     println(discount.discountType.calculate(5)) // DONE 11
 
     //DONE 7
-    val discountCopy = discount.copy(discountType = DiscountType.RangeAmount(5,10))
+    val discountCopy = discount.copy(discountType = DiscountType.RangeAmount(5, 10))
     println(discountCopy.discountType.calculate(5)) // DONE 11
 
     //DONE 9
     val discountCopyWithNoDiscountType = discount.copy(discountType = DiscountType.NoDiscount)
     println(discountCopyWithNoDiscountType.discountType.calculate(5)) // DONE 11
 
+    // DONE 15
+    val orderOne = Order(
+        id = 1,
+        time = "22 Sep, 12:18",
+        customerAddress = "Minsk, Scoriny 2",
+        customerName = "Andrew",
+        items = listOf(Item(123, "T-shirt"))
+    )
+
+    val orderTwo = Order(
+        id = 2,
+        time = "25 Sep, 12:18",
+        customerAddress = "Minsk, Scoriny 2",
+        customerName = "Evgeniy",
+        items = listOf(Item(2345, "Milk"), Item(2346, "Juice"))
+    )
+
+    val orderThree = Order(
+        id = 3,
+        time = "30 Sep, 19:00",
+        customerAddress = "Minsk, Timeryazeva 67, 433",
+        customerName = null,
+        items = listOf(Item(24, "Pizza"))
+    )
+
+    val orders = listOf(orderOne, orderTwo, orderThree)
+
+    val bikeDelivery = Delivery.BikeDelivery("XB3")
+    val carDelivery = Delivery.CarDelivery("Tesla S")
+    val postDelivery = Delivery.PostDelivery("Post of Minsk")
+
+    val deliveries = listOf(bikeDelivery, carDelivery, postDelivery)
+
+    // DONE 16
+    orders.forEach { order ->
+        deliveries.forEach { delivery ->
+            delivery.deliver(order)
+        }
+        println("\n")
+    }
+
+    // DONE 17
+    bikeDelivery.deliver = {
+        println("No print info regarding order delivery")
+    }
+
+    postDelivery.deliver = {
+        println("${postDelivery.post} delivered your order $it")
+    }
+
+    orders.forEach { order ->
+        deliveries.forEach { delivery ->
+            delivery.deliver(order)
+        }
+        println()
+    }
 }
