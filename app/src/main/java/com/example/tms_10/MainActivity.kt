@@ -62,4 +62,12 @@ fun main() {
     val postDelivery = Delivery.PostDelivery("Post of Minsk")
 
     val deliveries = listOf(bikeDelivery, carDelivery, postDelivery)
+
+    // DONE 16
+    orders.forEach { order ->
+        deliveries.forEach { delivery ->
+            delivery.deliver(order)
+        }
+        println()
+    }
 }
