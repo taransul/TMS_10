@@ -5,6 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        //DONE 3
+        val studentList: ArrayList<String> =
+            arrayListOf("Evgeniy", "Aleksander", "Sergey", "Alla", "Svetlana", "Viktoria")
+        val disciplineList: ArrayList<String> = arrayListOf("Mathematics", "History", "Geography")
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
