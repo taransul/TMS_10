@@ -1,7 +1,13 @@
 package com.example.tms_10
 
+import android.content.ContentValues
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.example.tms_10.homework_18.Discipline
+import com.example.tms_10.homework_18.Mark
+import com.example.tms_10.homework_18.Student
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -9,13 +15,45 @@ class MainActivity : AppCompatActivity() {
         val studentList: ArrayList<String> =
             arrayListOf("Evgeniy", "Aleksander", "Sergey", "Alla", "Svetlana", "Viktoria")
         val disciplineList: ArrayList<String> = arrayListOf("Mathematics", "History", "Geography")
-
+        val markListRandom: ArrayList<Int> = arrayListOf()
+        val averageDisciplineList: MutableList<Double> = mutableListOf()
+        val averageAllList: MutableList<Double> = mutableListOf()
+        //DONE 4
+        for (i in studentList.indices) {
+            val student = Student(studentList[i], i + 1)
+            for (j in disciplineList.indices) {
+                val discipline = Discipline(disciplineList[j], j + 101)
+                val randomMarkQuantity = Random.nextInt(2, 10)
+                for (n in 1..randomMarkQuantity) {
+                    markListRandom.add(Random.nextInt(4, 11))
+                }
+                //DONE 5
+                val mark = Mark(student, discipline, markListRandom)
+                val addAverageDouble = mark.calculatingTheAverageScore()
+                averageDisciplineList.add(addAverageDouble)
+                averageAllList.add(addAverageDouble)
+                markListRandom.clear()
+            }
+            val averageDiscipline = averageDisciplineList.average()
+            Log.v(
+                "StudentAverage",
+                "Студент: ${student.name} (id: ${student.id}); средний бал: ${
+                    "%.2f".format(
+                        averageDiscipline
+                    )
+                }"
+            )
+            averageDisciplineList.clear()
+        }
+        Log.e(
+            ContentValues.TAG,
+            "Средний балл по классу: ${"%.2f".format(averageAllList.average())}"
+        )
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
 }
 
-//DONE 4
 fun main() {
     val discount = Discount(
         "Сеть пиццерий \"Додо пицца\"",
