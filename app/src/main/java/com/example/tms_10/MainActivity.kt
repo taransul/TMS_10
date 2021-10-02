@@ -1,6 +1,6 @@
 package com.example.tms_10
 
-import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +18,10 @@ class MainActivity : AppCompatActivity() {
         val markListRandom: ArrayList<Int> = arrayListOf()
         val averageDisciplineList: MutableList<Double> = mutableListOf()
         val averageAllList: MutableList<Double> = mutableListOf()
+        //DONE 9*
+        val excellentList: MutableList<String> = mutableListOf()
+        val goodGuyList: MutableList<String> = mutableListOf()
+        val outsiderList: MutableList<String> = mutableListOf()
         //DONE 4
         for (i in studentList.indices) {
             val student = Student(studentList[i], i + 1)
@@ -34,6 +38,19 @@ class MainActivity : AppCompatActivity() {
                 averageAllList.add(addAverageDouble)
                 markListRandom.clear()
             }
+            //DONE 9*
+            val sortedMinValues = averageDisciplineList.sorted()[0]
+            when {
+                sortedMinValues >= 9.0 -> {
+                    excellentList.add(student.name)
+                }
+                sortedMinValues >= 6.0 -> {
+                    goodGuyList.add(student.name)
+                }
+                sortedMinValues >= 5.0 -> {
+                    outsiderList.add(student.name)
+                }
+            }
             val averageDiscipline = averageDisciplineList.average()
             Log.v(
                 "StudentAverage",
@@ -45,10 +62,12 @@ class MainActivity : AppCompatActivity() {
             )
             averageDisciplineList.clear()
         }
-        Log.e(
-            ContentValues.TAG,
-            "Средний балл по классу: ${"%.2f".format(averageAllList.average())}"
-        )
+        Log.e(TAG, "Средний балл по классу: ${"%.2f".format(averageAllList.average())}")
+        //DONE 9*
+        Log.e(TAG, "Отличники: $excellentList")
+        Log.e(TAG, "Хорошисты: $goodGuyList")
+        Log.e(TAG, "Чуть-чуть не хватило: $outsiderList")
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
